@@ -8,9 +8,10 @@ export default function TodoApp(){
             <BrowserRouter>
                 <Routes>
                     <Route path='/' element={<LoginComponent/>} />
-                    <Route path='/login' element={<LoginComponent/>}></Route>
-                    <Route path='/welcome/:username' element={<WelcomeComponent/>}></Route>
+                    <Route path='/login' element={<LoginComponent/>} />
+                    <Route path='/welcome/:username' element={<WelcomeComponent/>} />
                     <Route path='/*' element={< ErrorComponent />} />
+                    <Route path='todos' element={ < ListTodosComponent />} />
                 </Routes>
             </BrowserRouter>
         </div>
@@ -93,9 +94,46 @@ function WelcomeComponent(){
 function ErrorComponent(){
     return (
         <div className="ErrorComponent">
-           <h1>We Are Working really hard</h1>
-           <div>
+            <h1>We Are Working really hard</h1>
+            <div>
                Applogies for the 404, Reach out to our team.
+            </div>
+        </div>
+    )
+}
+
+function ListTodosComponent(){
+
+    const todos = [
+        {id: 1, description: 'Learn AWS'},
+        {id: 2, description: 'Learn Spring Boot'},
+        {id: 3, description: 'Learn Spring Security'}
+    ]
+
+    return (
+        <div class="ListTodosComponent">
+           <h1>Things You Want To Do!</h1>
+           <div>
+               <table>
+                   <thead>
+                       <tr>
+                           <th>ID</th>
+                           <th>Description</th>
+                       </tr>
+                   </thead>
+                   <tbody>
+                    {
+                        todos.map(
+                            todo => (
+                                <tr key={ todo.id }>
+                                    <td>{ todo.id }</td>
+                                    <td>{ todo.description }</td>
+                                </tr>
+                            )
+                        )
+                    }
+                   </tbody>
+               </table>
            </div>
         </div>
     )
