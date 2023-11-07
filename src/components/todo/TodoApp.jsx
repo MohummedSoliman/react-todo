@@ -1,11 +1,11 @@
-import { useState } from 'react'
-import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './TodoApp.css'
 import LogoutComponent from './LogoutComponent';
 import HeaderComponent from './HeaderComponent';
 import ListTodosComponent from './ListTodosComponent';
 import ErrorComponent from './ErrorComponent';
 import WelcomeComponent from './WelcomeComponent';
+import LoginComponent from './LoginComponent';
 
 export default function TodoApp(){
     return (
@@ -24,64 +24,5 @@ export default function TodoApp(){
                 </Routes>
             </BrowserRouter>
         </div>
-    )
-}
-
-function LoginComponent(){
-
-    const [username, setUsername] = useState('Mohamed');
-
-    const [password, setUserPassword] = useState('');
-
-    const [showSuccessMessage, setShowSuccessMessage] = useState(false);
-
-    const [showErrorMessage, setShowErrorMessage] = useState(false);
-
-    const navigate = useNavigate();
-
-
-    function handleUsernameChange(event){
-        setUsername(event.target.value)
-    }
-
-    function handleUserPassChange(event){
-        setUserPassword(event.target.value)
-    }
-
-    function handleSubmit(){
-        if(username === "Mohamed" && password ==="123") {
-            setShowSuccessMessage(true);
-            setShowErrorMessage(false);
-            navigate(`/welcome/${username}`);
-        } else {
-            setShowSuccessMessage(false);
-            setShowErrorMessage(true);
-        }
-    }
-
-    return (
-      <div className="Login">
-         <h1>Time To Login!</h1>
-        {showSuccessMessage && <div className="successMessae" >Authenticated Successfully</div>} 
-        {showErrorMessage && <div className="errorMessage">Authentication Failed, Please Check your Credintial.</div>}
-        <div className="LoginForm">
-            <div>
-                <label>User Name</label>
-                <input type="text" name="username" value={username}
-                    onChange={handleUsernameChange}
-                />
-            </div>
-            <div>
-                <label>Password</label>
-                <input type="password" name="password" value={password}
-                    onChange={handleUserPassChange}
-                />
-            </div>
-            <div>
-                <button type="button" name="login" 
-                    onClick={handleSubmit}>Login</button>
-            </div>
-        </div>
-      </div>
     )
 }
