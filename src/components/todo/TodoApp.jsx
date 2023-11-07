@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
 import './TodoApp.css'
 
 export default function TodoApp(){
@@ -26,6 +26,8 @@ function LoginComponent(){
 
     const [showErrorMessage, setShowErrorMessage] = useState(false);
 
+    const navigate = useNavigate();
+
 
     function handleUsernameChange(event){
         setUsername(event.target.value)
@@ -39,6 +41,7 @@ function LoginComponent(){
         if(username === "Mohamed" && password ==="123") {
             setShowSuccessMessage(true);
             setShowErrorMessage(false);
+            navigate('/welcome');
         } else {
             setShowSuccessMessage(false);
             setShowErrorMessage(true);
