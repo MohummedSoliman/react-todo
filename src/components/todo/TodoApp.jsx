@@ -20,18 +20,6 @@ function LoginComponent(){
 
     const [showErrorMessage, setShowErrorMessage] = useState(false);
 
-    function SuccessMessageComponent(){
-        if(showSuccessMessage) 
-            return <div className="successMessae" >Authenticated Successfully</div>
-        return null
-    }
-
-    function ErrorMessageComponent(){
-        if(showErrorMessage)
-            return <div className="errorMessage">Authentication Failed, Please Check your Credintial.</div>
-
-        return null
-    }
 
     function handleUsernameChange(event){
         setUsername(event.target.value)
@@ -53,8 +41,8 @@ function LoginComponent(){
 
     return (
       <div className="Login">
-        <SuccessMessageComponent />
-        <ErrorMessageComponent/>
+        {showSuccessMessage && <div className="successMessae" >Authenticated Successfully</div>} 
+        {showErrorMessage && <div className="errorMessage">Authentication Failed, Please Check your Credintial.</div>}
         <div className="LoginForm">
             <div>
                 <label>User Name</label>
