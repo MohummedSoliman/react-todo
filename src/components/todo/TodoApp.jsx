@@ -16,6 +16,23 @@ function LoginComponent(){
 
     const [password, setUserPassword] = useState('');
 
+    const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+
+    const [showErrorMessage, setShowErrorMessage] = useState(false);
+
+    function SuccessMessageComponent(){
+        if(showSuccessMessage) 
+            return <div className="successMessae" >Authenticated Successfully</div>
+        return null
+    }
+
+    function ErrorMessageComponent(){
+        if(showErrorMessage)
+            return <div className="errorMessage">Authentication Failed, Please Check your Credintial.</div>
+
+        return null
+    }
+
     function handleUsernameChange(event){
         setUsername(event.target.value)
     }
@@ -24,8 +41,20 @@ function LoginComponent(){
         setUserPassword(event.target.value)
     }
 
+    function handleSubmit(){
+        if(username === "Mohamed" && password ==="123") {
+            setShowSuccessMessage(true);
+            setShowErrorMessage(false);
+        } else {
+            setShowSuccessMessage(false);
+            setShowErrorMessage(true);
+        }
+    }
+
     return (
       <div className="Login">
+        <SuccessMessageComponent />
+        <ErrorMessageComponent/>
         <div className="LoginForm">
             <div>
                 <label>User Name</label>
@@ -40,7 +69,8 @@ function LoginComponent(){
                 />
             </div>
             <div>
-                <button type="button" name="login">Login</button>
+                <button type="button" name="login" 
+                    onClick={handleSubmit}>Login</button>
             </div>
         </div>
       </div>
