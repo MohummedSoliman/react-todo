@@ -1,11 +1,17 @@
 import { useState } from 'react'
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './TodoApp.css'
 
 export default function TodoApp(){
     return (
         <div className="TodoApp">
-            Todo Management Application
-            <LoginComponent/>
+            <BrowserRouter>
+                <Routes>
+                    <Route path='/' element={<LoginComponent/>} />
+                    <Route path='/login' element={<LoginComponent/>}></Route>
+                    <Route path='/welcome' element={<WelcomeComponent/>}></Route>
+                </Routes>
+            </BrowserRouter>
         </div>
     )
 }
@@ -62,5 +68,13 @@ function LoginComponent(){
             </div>
         </div>
       </div>
+    )
+}
+
+function WelcomeComponent(){
+    return (
+        <div className="Welcome">
+            Welcome Component.
+        </div>
     )
 }
