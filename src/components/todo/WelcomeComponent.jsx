@@ -1,6 +1,6 @@
 import { Link, useParams } from "react-router-dom";
-import axios from "axios";
 import { useState } from "react";
+import { retrieveHelloWorld } from "./api/HelloWorldApiService";
 
 function WelcomeComponent(){
 
@@ -9,7 +9,7 @@ function WelcomeComponent(){
     const [ message, setMessage ] = useState(null);
 
     function callHelloWorldRestAPI(){
-        axios.get("http://localhost:8080/hello-world")
+            retrieveHelloWorld()
              .then( (reponse) => successfulResponse(reponse))
              .catch( (error) => errorReponse(error));
     }
