@@ -1,6 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import { useState } from "react";
-import { retrieveHelloWorld } from "./api/HelloWorldApiService";
+import { retrieveHelloWorld, retrieveHelloWorldPath } from "./api/HelloWorldApiService";
 
 function WelcomeComponent(){
 
@@ -12,10 +12,14 @@ function WelcomeComponent(){
             retrieveHelloWorld()
              .then( (reponse) => successfulResponse(reponse))
              .catch( (error) => errorReponse(error));
+
+            retrieveHelloWorldPath(username)
+             .then( (reponse) => successfulResponse(reponse))
+             .catch( (error) => errorReponse(error));
     }
     
     function successfulResponse(response){
-        setMessage(response.data);
+        setMessage(response.data.message);
     }
     
     function errorReponse(error){
