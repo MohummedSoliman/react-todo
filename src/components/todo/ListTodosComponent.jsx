@@ -1,17 +1,35 @@
+import { useEffect, useState } from "react";
+import { retrieveTodosForUser } from "./api/RestTodoApiService";
+
 function ListTodosComponent(){
 
-    const today = new Date();
-    const targetDate = new Date(today.getFullYear() + 12, today.getMonth(), 
-                                today.getDay());
+    // const today = new Date();
+    // const targetDate = new Date(today.getFullYear() + 12, today.getMonth(), 
+    //                             today.getDay());
 
-    const todos = [
-        {id: 1, description: 'Learn AWS', done: false, targetDate: targetDate},
-        {id: 2, description: 'Learn Spring Boot', done: false, targetDate: targetDate},
-        {id: 3, description: 'Learn Spring Security', done: false, targetDate: targetDate}
-    ]
+    const [todos, setTodos] = useState([]);
+
+    // const todos = [
+    //     {id: 1, description: 'Learn AWS', done: false, targetDate: targetDate},
+    //     {id: 2, description: 'Learn Spring Boot', done: false, targetDate: targetDate},
+    //     {id: 3, description: 'Learn Spring Security', done: false, targetDate: targetDate}
+    // ]
+
+    useEffect(
+        () => refreshTodos(), []
+    );
+    
+
+    function refreshTodos(){
+        retrieveTodosForUser('Mohamed')
+           .then( response => {
+               setTodos(response.data)
+           })
+           .catch();
+    }
 
     return (
-        <div class="container">
+        <div className="container">
            <h1>Things You Want To Do!</h1>
            <div>
                <table className="table">
@@ -31,7 +49,7 @@ function ListTodosComponent(){
                                     <td>{ todo.id }</td>
                                     <td>{ todo.description }</td>
                                     <td>{ todo.done.toString() }</td>
-                                    <td>{ todo.targetDate.toDateString() }</td>
+                                    <td>{ todo.targetDate }</td>
                                 </tr>
                             )
                         )
