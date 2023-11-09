@@ -60,12 +60,11 @@ function ListTodosComponent(){
                <table className="table">
                    <thead>
                        <tr>
-                           <th>ID</th>
                            <th>Description</th>
                            <th>IS Done</th>
                            <th>Target Date</th>
-                           <th></th>
-                           <th></th>
+                           <th>Delete</th>
+                           <th>Update</th>
                        </tr>
                    </thead>
                    <tbody>
@@ -73,7 +72,6 @@ function ListTodosComponent(){
                         todos.map(
                             todo => (
                                 <tr key={ todo.id }>
-                                    <td>{ todo.id }</td>
                                     <td>{ todo.description }</td>
                                     <td>{ todo.done.toString() }</td>
                                     <td>{ todo.targetDate }</td>
