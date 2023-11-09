@@ -21,3 +21,7 @@ export function retrieveTodoAPI(username, id){
 export function updateTodoAPI(username, id, todo){
     return apiClient.put(`users/${username}/todos/${id}`, todo)
 }
+
+export function createTodoAPI(username,todo){
+    return apiClient.post(`users/${username}/todos`, todo)
+}
