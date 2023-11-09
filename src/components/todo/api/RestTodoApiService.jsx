@@ -1,15 +1,7 @@
-import axios from "axios";
-
-const apiClient = axios.create({
-  baseURL: "http://localhost:8080/",
-});
+import { apiClient } from "./ApiClient";
 
 export function retrieveTodosForUserAPI(username) {
-  return apiClient.get(`users/${username}/todos`, {
-    headers: {
-      Authorization: { username: "Mohamed", password: "123" },
-    },
-  });
+  return apiClient.get(`users/${username}/todos`);
 }
 
 export function deleteTodoByIdAPI(username, id) {

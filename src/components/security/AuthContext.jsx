@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from "react";
+import { apiClient } from "../todo/api/ApiClient";
 import { executeBasicAuthenticationService } from "../todo/api/RestTodoApiService";
 
 const AuthContext = createContext();
@@ -35,6 +36,10 @@ function AuthProvider({ children }) {
         setAuthenticated(true);
         setUsername(username);
         setToken(baToken);
+        apiClient.interceptors.request.use((req) => {
+          req.headers.Authorization = baToken;
+          return req;
+        });
         return true;
       } else {
         logout();
