@@ -17,3 +17,7 @@ export function deleteTodoByIdAPI(username, id){
 export function retrieveTodoAPI(username, id){
     return apiClient.get(`users/${username}/todos/${id}`);
 }
+
+export function updateTodoAPI(username, id, todo){
+    return apiClient.put(`users/${username}/todos/${id}`, todo)
+}
